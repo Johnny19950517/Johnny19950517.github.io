@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.8.3.js"></script>
+    <style>
+    *
+    {
+        padding:0;
+        margin:0;
+    }
+    body
+    {
+        background:#00AABB;
+        width: 100%;
+        height: 100%;
+        overflow:hidden;
+    }
+    
+    </style>
+</head>
+<body>
+    <div id="flame">
+            <font color='white' size='20px'>*雪儿*</font>
+            <EMBED src=qqq.mp3 width=0 height= type=audio/mpeg loop="1" autostart="true" volume="0">
+            </EMBED>
+    </div>
+    <input type="button" id="d1" value="①">
+    <p id="p1">你能考完试，看你这么轻松我很开心`</p>
+    <input type="button" id="d2" value="②">
+    <div id="p2">
+        <div>
+            <p>嘿嘿嘿</p>
+        </div>
+        <p>哈哈哈</p>
+    </div>
+    <img src="s.php" alt="">
+    <p id="d3">任时光匆匆,(点一下)</p>
+    <div id="d4">
+        <div id="d5">
+            <img src="qq4.png" alt="">
+        </div>
+    </div>
+    <br>
+    <input type="button" id="d6" value="③">
+    <input type="button" id="d7" value="④">
+    <input type="button" id="d8" value="⑤">
+    <img src="qq5.png" alt="">
+</body>
+<script>
+    function Obj(){};//创建一个对象
+
+    // 为对象添加一个具有一个参数的原型方法
+    Obj.prototype.draw=function(o){
+        var speed=0;//雪花每次下落的数值
+        
+        //设置雪花随机开始的离左边的宽度
+        var startPosLeft=Math.ceil(Math.random()*document.documentElement.clientWidth);
+        
+        //设置透明度
+        o.style.opacity=(Math.ceil(Math.random()*5)+15)/10;
+        o.style.left=startPosLeft+'px';
+        o.style.color='#fff';
+
+        // 雪花的大小
+        o.style.fontSize=15+Math.ceil(Math.random()*50)+'px';
+        
+        // seInterval()方法会不停的调用函数按每400毫秒计算
+        setInterval(function(){
+
+            // 雪花下落的top值小于屏幕的可视区域高时执行
+            if(speed<document.documentElement.clientHeight){
+                o.style.top=speed+'px';
+                o.style.left=startPosLeft+Math.ceil(Math.random()*8)+'px';
+                speed+=10;
+            }
+            else{
+                o.style.display='none';
+            }
+        },600);
+    }
+    var flame=document.getElementById('flame');
+
+    // 使用setInterval定时器每800毫秒创建一个雪花
+    setInterval(function(){
+
+        // 创建一个div
+        var odiv=document.createElement('div');
+        odiv.innerHTML='*';
+
+        // div的绝对定位
+        odiv.style.position='absolute';
+
+        // 把创建好的div放到flame中
+        flame.appendChild(odiv);
+
+        // 创建函数
+        var obj=new Obj();
+        
+        // 整个div
+        obj.draw(odiv);
+    },100);
+    $('#d1').click(function()
+    {
+        $('#p1').css('background','red');
+    });
+    $('#d2').click(function()
+    {
+        $('#p2').text('好好享受即将来临的假期吧！')
+        // $('#d2').html('<i>www</i>')
+    });
+    $('#d3').click(function()
+    {
+        alert('我只在乎你！');
+    });
+    $('#d4').toggle(function()
+    {
+        $('#d5').hide(3000,function()
+        {
+            alert('爱你');
+        });
+    },function()
+    {
+        $('#d5').show(300);
+    });
+    $('#d6').click(function()
+    {
+        $('img').slideUp(4000);
+    })
+    $('#d7').click(function()
+    {
+        $('img').slideDown(4000,function()
+        {
+            alert('喜欢你！重要的事说三遍！');
+        })
+    })
+    $('#d8').click(function()
+    {
+        $('img').slideToggle(3000);
+    })
+
+</script>
+</html>
